@@ -2,10 +2,11 @@ package fr.dracoctix.dev.warnings.warnings;
 
 import org.bukkit.entity.Player;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class Warning {
-    private Player joueur;
+    private Player player;
     private Player moderator;
     private Date start;
     private int days;
@@ -14,22 +15,22 @@ public class Warning {
     private String justification;
 
     public Warning(Player joueur, Player moderator, int days, int points, String description, String justification) {
-        this.joueur = joueur;
+        this.player = joueur;
         this.moderator = moderator;
         this.days = days;
         this.points = points;
         this.description = description;
         this.justification = justification;
 
-        start = new Date();
+        start = Date.valueOf(LocalDate.now());
     }
 
-    public Player getJoueur() {
-        return joueur;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setJoueur(Player joueur) {
-        this.joueur = joueur;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public Player getModerator() {
