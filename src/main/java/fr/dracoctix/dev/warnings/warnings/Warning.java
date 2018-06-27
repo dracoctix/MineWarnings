@@ -20,5 +20,7 @@ public class Warning {
         this.points = points;
         this.description = description;
         this.justification = justification;
+
+        start = new Date();
     }
 }
