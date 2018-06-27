@@ -2,6 +2,7 @@ package fr.dracoctix.dev.minewarnings;
 
 import fr.dracoctix.dev.minewarnings.commands.WarnListCommandListener;
 import fr.dracoctix.dev.minewarnings.configuration.DefaultConfigReader;
+import fr.dracoctix.dev.minewarnings.storage.WarnManagerInterface;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
@@ -11,6 +12,7 @@ public final class MineWarnings extends JavaPlugin {
     private static MineWarnings plugin;
     private DefaultConfigReader conf;
     private Connection db;
+    private WarnManagerInterface warnManager;
 
     @Override
     public void onEnable() {
@@ -24,6 +26,7 @@ public final class MineWarnings extends JavaPlugin {
         registerCommands();
 
         db = conf.getDatabase();
+        warnManager = conf.getWarnManager();
 
         getLogger().info("stop");
     }
@@ -53,5 +56,9 @@ public final class MineWarnings extends JavaPlugin {
     private void registerCommands()
     {
         getCommand("warn-causes").setExecutor(new WarnListCommandListener());
+    }
+
+    public WarnManagerInterface getWarnManager() {
+        return warnManager;
     }
 }

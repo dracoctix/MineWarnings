@@ -1,6 +1,8 @@
 package fr.dracoctix.dev.minewarnings.configuration;
 
 import fr.dracoctix.dev.minewarnings.MineWarnings;
+import fr.dracoctix.dev.minewarnings.storage.WarnManagerInterface;
+import fr.dracoctix.dev.minewarnings.storage.mysql.MySQLWarnManager;
 import fr.dracoctix.dev.minewarnings.warnings.Cause;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -25,6 +27,8 @@ public class DefaultConfigReader {
     private String prefix;
     private Connection database;
 
+    private WarnManagerInterface warnManager;
+
     public DefaultConfigReader(FileConfiguration config) {
         this.config = config;
         this.causes = new HashMap<>();
@@ -37,6 +41,10 @@ public class DefaultConfigReader {
         parseSettings();
         if(mysql) {
             parseDatabase();
+            warnManager = new MySQLWarnManager(database, prefix);
+        }
+        else {
+            // TODO : YamlWarnManager creation and use
         }
     }
 
@@ -200,5 +208,9 @@ public class DefaultConfigReader {
 
     public void setMysql(boolean mysql) {
         this.mysql = mysql;
+    }
+
+    public WarnManagerInterface getWarnManager() {
+        return warnManager;
     }
 }
