@@ -16,7 +16,7 @@ public class MySQLWarnManager implements WarnManagerInterface {
 
     public MySQLWarnManager(Connection connection, String prefix) {
         this.connection = connection;
-        this.table = prefix + "minewarnings";
+        this.table = prefix + "warnings";
     }
 
     @Override

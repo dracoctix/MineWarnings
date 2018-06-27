@@ -1,5 +1,5 @@
 warning-settings:
-  max-warnings-points-before-ban: 10 # Maximum warning points before player is banned
+  max-warning-points-before-ban: 10 # Maximum warning points before player is banned
   ban-times: # Ban time in days when user exceed the maximum minewarnings points. Every time the user is banned, the time is the following one. -1 for permabab.
     - 15
     - -1

@@ -51,7 +51,7 @@ public class DefaultConfigReader {
     private void parseSettings() {
         ConfigurationSection settingsSection = config.getConfigurationSection("warning-settings");
 
-        maxWarningPoints = settingsSection.getInt("max-minewarnings-points-before-ban",10);
+        maxWarningPoints = settingsSection.getInt("max-warning-points-before-ban",10);
         pardonTime = settingsSection.getInt("pardon-time",-1);
         hiddenModerator = settingsSection.getBoolean("hidden-moderator",false);
         consoleWarning = settingsSection.getBoolean("console-can-warn",true);
@@ -96,7 +96,7 @@ public class DefaultConfigReader {
         String warningsTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, user VARCHAR(255) NOT NULL, moderator VARCHAR(255), start DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, points INTEGER NOT NULL, days INTEGER NOT NULL, description TEXT NOT NULL, justification TEXT);";
         String bansTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, start DATETIME NOT NULL, days INTEGER NOT NULL, stage INTEGER NOT NULL);";
 
-        warningsTableQuery = warningsTableQuery.replace("$tableName", prefix+"minewarnings");
+        warningsTableQuery = warningsTableQuery.replace("$tableName", prefix+"warnings");
         bansTableQuery = bansTableQuery.replace("$tableName",prefix+"bans");
 
         PreparedStatement wtStatement = database.prepareStatement(warningsTableQuery);
@@ -109,7 +109,7 @@ public class DefaultConfigReader {
     public void persist() {
         ConfigurationSection settingsSection = config.getConfigurationSection("warning-settings");
 
-        settingsSection.set("max-minewarnings-points-before-ban", 255);
+        settingsSection.set("max-warning-points-before-ban", maxWarningPoints);
         settingsSection.set("ban-times",banStages);
         settingsSection.set("pardon-time",pardonTime);
         settingsSection.set("hidden-moderator",hiddenModerator);
