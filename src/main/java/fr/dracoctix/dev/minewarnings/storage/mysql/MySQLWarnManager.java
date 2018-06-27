@@ -37,7 +37,10 @@ public class MySQLWarnManager implements WarnManagerInterface {
             statement.setInt(4,warning.getPoints());
             statement.setInt(5,warning.getDays());
             statement.setString(6,warning.getDescription());
-            statement.setString(7,warning.getDescription());
+            statement.setString(7,warning.getJustification());
+
+            statement.executeUpdate();
+
             retour = true;
         } catch (SQLException e) {
             e.printStackTrace();

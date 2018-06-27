@@ -43,7 +43,7 @@ public class DefaultWarnCommandListener extends AbstractUsageCommandListener {
             justification = null;
         }
 
-        Warning avertissement = new Warning(player,moderator,cause.getPoints(),cause.getExpirationTime(),cause.getDescription(), justification);
+        Warning avertissement = new Warning(player,moderator,cause.getExpirationTime(),cause.getPoints(),cause.getDescription(), justification);
         boolean reussite = warnManager.addWarning(avertissement);
 
         if(!reussite) {
