@@ -93,7 +93,7 @@ public class DefaultConfigReader {
     }
 
     private void tablesInitialisation() throws SQLException {
-        String warningsTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, user VARCHAR(255) NOT NULL, moderator VARCHAR(255) NOT NULL, start DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, points INTEGER NOT NULL, days INTEGER NOT NULL, description TEXT NOT NULL, justification TEXT);";
+        String warningsTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, user VARCHAR(255) NOT NULL, moderator VARCHAR(255), start DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, points INTEGER NOT NULL, days INTEGER NOT NULL, description TEXT NOT NULL, justification TEXT);";
         String bansTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, start DATETIME NOT NULL, days INTEGER NOT NULL, stage INTEGER NOT NULL);";
 
         warningsTableQuery = warningsTableQuery.replace("$tableName", prefix+"minewarnings");

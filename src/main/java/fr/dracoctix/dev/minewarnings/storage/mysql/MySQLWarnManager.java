@@ -27,8 +27,10 @@ public class MySQLWarnManager implements WarnManagerInterface {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
 
+            String moderatorUuid = (warning.getModerator() == null) ? null : warning.getModerator().getUniqueId().toString();
+
             statement.setString(1,warning.getPlayer().getUniqueId().toString());
-            statement.setString(2,warning.getModerator().getUniqueId().toString());
+            statement.setString(2,moderatorUuid);
             statement.setDate(3,warning.getStart());
             statement.setInt(4,warning.getPoints());
             statement.setInt(5,warning.getDays());
