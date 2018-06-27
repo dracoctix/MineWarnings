@@ -44,7 +44,12 @@ public class DefaultWarnCommandListener extends AbstractUsageCommandListener {
         }
 
         Warning avertissement = new Warning(player,moderator,cause.getPoints(),cause.getExpirationTime(),cause.getDescription(), justification);
-        warnManager.addWarning(avertissement);
+        boolean reussite = warnManager.addWarning(avertissement);
+
+        if(!reussite) {
+            sender.sendMessage(ChatColor.RED + "The warning cannot be registered in storage system. Please retry, and contact system administrator if the problem persists.");
+            return false;
+        }
 
         return true;
     }
