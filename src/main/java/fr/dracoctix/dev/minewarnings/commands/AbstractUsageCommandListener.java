@@ -4,6 +4,7 @@ import fr.dracoctix.dev.minewarnings.MineWarnings;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 public abstract class AbstractUsageCommandListener implements CommandExecutor {
@@ -13,7 +14,7 @@ public abstract class AbstractUsageCommandListener implements CommandExecutor {
             return commandExecution(sender, true, command, label, args);
         }
         else {
-            if(MineWarnings.getPlugin().getConf().isConsoleWarning()) {
+            if(MineWarnings.getPlugin().getConf().isConsoleWarning() && sender instanceof ConsoleCommandSender) {
                 return commandExecution(sender,false,command,label,args);
             } else {
                 sender.sendMessage("You cannot use this command, because the configuration doesn't allow console minewarnings.");
