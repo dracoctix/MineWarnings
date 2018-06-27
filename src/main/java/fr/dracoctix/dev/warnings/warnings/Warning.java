@@ -14,8 +14,8 @@ public class Warning {
     private String description;
     private String justification;
 
-    public Warning(Player joueur, Player moderator, int days, int points, String description, String justification) {
-        this.player = joueur;
+    public Warning(Player player, Player moderator, int days, int points, String description, String justification) {
+        this.player = player;
         this.moderator = moderator;
         this.days = days;
         this.points = points;
@@ -23,6 +23,17 @@ public class Warning {
         this.justification = justification;
 
         start = Date.valueOf(LocalDate.now());
+    }
+
+    public Warning(Player player, Player moderator, int days, int points, String description) {
+        this.player = player;
+        this.moderator = moderator;
+        this.days = days;
+        this.points = points;
+        this.description = description;
+
+        start = Date.valueOf(LocalDate.now());
+        justification = null;
     }
 
     public Player getPlayer() {
