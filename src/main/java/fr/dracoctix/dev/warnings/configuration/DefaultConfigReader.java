@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,17 +78,28 @@ public class DefaultConfigReader {
 
         try {
             database = DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + name,username,password);
+            tablesInitialisation();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void tablesInitialisation() {
-        String warningsTableQuery = "CREATE TABLE IF NOT EXISTS ?(id INTEGER PRIMARY KEY AUTO_INCREMENT, user VARCHAR(255) NOT NULL, moderator VARCHAR(255) NOT NULL, start DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, points INTEGER NOT NULL, days INTEGER NOT NULL, description TEXT NOT NULL, justification TEXT)";
+    private void tablesInitialisation() throws SQLException {
+        String warningsTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, user VARCHAR(255) NOT NULL, moderator VARCHAR(255) NOT NULL, start DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, points INTEGER NOT NULL, days INTEGER NOT NULL, description TEXT NOT NULL, justification TEXT);";
+        String bansTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, start DATETIME NOT NULL, days INTEGER NOT NULL, stage INTEGER NOT NULL);";
+
+        warningsTableQuery = warningsTableQuery.replace("$tableName", prefix+"warnings");
+        bansTableQuery = bansTableQuery.replace("$tableName",prefix+"bans");
+
+        PreparedStatement wtStatement = database.prepareStatement(warningsTableQuery);
+        PreparedStatement btStatement = database.prepareStatement(bansTableQuery);
+
+        wtStatement.executeUpdate();
+        btStatement.executeUpdate();
     }
 
-    public void persist() throws IOException {
+    public void persist() {
         ConfigurationSection settingsSection = config.getConfigurationSection("warning-settings");
 
         settingsSection.set("max-warnings-points-before-ban", 255);
@@ -95,6 +107,7 @@ public class DefaultConfigReader {
         settingsSection.set("pardon-time",pardonTime);
         settingsSection.set("hidden-moderator",hiddenModerator);
         settingsSection.set("console-can-warn",consoleWarning);
+        settingsSection.set("use-mysql",mysql);
 
         config.set("default-warning-causes",null);
 
