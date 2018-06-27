@@ -1,4 +1,4 @@
-package fr.dracoctix.dev.warnings.warnings;
+package fr.dracoctix.dev.minewarnings.warnings;
 
 public class Cause {
     private String id;

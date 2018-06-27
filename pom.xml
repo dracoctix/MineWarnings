@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fr.dracoctix.dev</groupId>
-    <artifactId>Warnings</artifactId>
+    <artifactId>MineWarnings</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Warnings</name>
+    <name>MineWarnings</name>
 
-    <description>Bod which allows servers admins to use warnings on their servers.</description>
+    <description>Plugin which allows servers admins to use warnings on their servers.</description>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

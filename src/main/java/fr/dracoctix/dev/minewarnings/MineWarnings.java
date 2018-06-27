@@ -1,14 +1,14 @@
-package fr.dracoctix.dev.warnings;
+package fr.dracoctix.dev.minewarnings;
 
-import fr.dracoctix.dev.warnings.commands.WarnListCommandListener;
-import fr.dracoctix.dev.warnings.configuration.DefaultConfigReader;
+import fr.dracoctix.dev.minewarnings.commands.WarnListCommandListener;
+import fr.dracoctix.dev.minewarnings.configuration.DefaultConfigReader;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public final class Warnings extends JavaPlugin {
-    private static Warnings plugin;
+public final class MineWarnings extends JavaPlugin {
+    private static MineWarnings plugin;
     private DefaultConfigReader conf;
     private Connection db;
 
@@ -40,7 +40,7 @@ public final class Warnings extends JavaPlugin {
         }
     }
 
-    public static Warnings getPlugin()
+    public static MineWarnings getPlugin()
     {
         return plugin;
     }

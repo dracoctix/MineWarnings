@@ -1,7 +1,7 @@
-package fr.dracoctix.dev.warnings.storage;
+package fr.dracoctix.dev.minewarnings.storage;
 
-import fr.dracoctix.dev.warnings.exceptions.UnknownWarningException;
-import fr.dracoctix.dev.warnings.warnings.Warning;
+import fr.dracoctix.dev.minewarnings.exceptions.UnknownWarningException;
+import fr.dracoctix.dev.minewarnings.warnings.Warning;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;

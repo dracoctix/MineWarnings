@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="MineWarnings" />
         <module name="Warnings" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MineWarnings" target="1.8" />
       <module name="Warnings" target="1.8" />
     </bytecodeTargetLevel>
   </component>

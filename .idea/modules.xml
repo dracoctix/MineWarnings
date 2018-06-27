@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MineWarnings.iml" filepath="$PROJECT_DIR$/MineWarnings.iml" />
       <module fileurl="file://$PROJECT_DIR$/Warnings.iml" filepath="$PROJECT_DIR$/Warnings.iml" />
     </modules>
   </component>

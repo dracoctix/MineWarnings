@@ -1,9 +1,9 @@
-name: Warnings
+name: MineWarnings
 version: ${project.version}
-main: fr.dracoctix.dev.warnings.Warnings
-prefix: Warnings
+main: fr.dracoctix.dev.minewarnings.MineWarnings
+prefix: MineWarnings
 authors: [Dracoctix]
-description: Plugin which allows servers admins to use warnings on their servers.
+description: Plugin which allows servers admins to use minewarnings on their servers.
 website: https://dev.dracoctix.fr
 
 commands:
@@ -40,14 +40,14 @@ commands:
       - warning-info
 
   warn-user-info:
-    description: List all warnings on an user.
+    description: List all minewarnings on an user.
     usage: 'Usage : /warn-user-info <username>'
     permission: warn.user-info
     aliases:
       - warning-user-info
 
   warn-moderator-info:
-    description: List warnings given by a moderator.
+    description: List minewarnings given by a moderator.
     usage: 'Usage : /warn-user-info <username>'
     permission: warn.moderator-info
     aliases:
@@ -75,7 +75,7 @@ commands:
       - warning-cancel
 
   warn-history:
-    description: Display the history of warnings.
+    description: Display the history of minewarnings.
     usage: 'Usage : /warn-history [moderator]'
     permission: warn.history
     aliases:
@@ -84,7 +84,7 @@ commands:
 
 permissions:
   warn.*:
-    description: Give access to every Warnings plugin commands.
+    description: Give access to every MineWarnings plugin commands.
     children:
       warn.moderator: true
       warn.custom: true
@@ -95,7 +95,7 @@ permissions:
       warn.history: true
 
   warn.moderator:
-    description: Give standard moderator access to Warnings. The user with this permission can warn an user with a predefined cause, and list these causes.
+    description: Give standard moderator access to MineWarnings. The user with this permission can warn an user with a predefined cause, and list these causes.
     children:
       warn.user: true
       warn.cause: true
@@ -105,12 +105,12 @@ permissions:
       warn.user-info: true
 
   warn.user:
-    description: Standard user permission. The user can see his warnings.
+    description: Standard user permission. The user can see his minewarnings.
     children:
       warn.info: true
 
   warn.info:
-    description: An user with this permission can see his warnings.
+    description: An user with this permission can see his minewarnings.
     default: true
 
   warn.cause:
@@ -132,7 +132,7 @@ permissions:
       warn.edit: true
 
   warn.edit:
-    description: An user with this permission can edit all details from warnings he gived.
+    description: An user with this permission can edit all details from minewarnings he gived.
     default: op
 
   warn.cancel-all:
@@ -152,9 +152,9 @@ permissions:
       warn.edit-cause: true
 
   warn.edit-cause:
-    description: An user with this permission can edit his warnings, with a predefined cause.
+    description: An user with this permission can edit his minewarnings, with a predefined cause.
     default: op
 
   warn.history:
-    description: An user with this permission can display warnings history.
+    description: An user with this permission can display minewarnings history.
     default: op

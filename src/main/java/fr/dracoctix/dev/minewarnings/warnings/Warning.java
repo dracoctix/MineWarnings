@@ -1,4 +1,4 @@
-package fr.dracoctix.dev.warnings.warnings;
+package fr.dracoctix.dev.minewarnings.warnings;
 
 import org.bukkit.entity.Player;
 

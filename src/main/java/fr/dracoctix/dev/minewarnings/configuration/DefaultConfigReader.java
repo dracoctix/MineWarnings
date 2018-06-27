@@ -1,11 +1,10 @@
-package fr.dracoctix.dev.warnings.configuration;
+package fr.dracoctix.dev.minewarnings.configuration;
 
-import fr.dracoctix.dev.warnings.Warnings;
-import fr.dracoctix.dev.warnings.warnings.Cause;
+import fr.dracoctix.dev.minewarnings.MineWarnings;
+import fr.dracoctix.dev.minewarnings.warnings.Cause;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -44,7 +43,7 @@ public class DefaultConfigReader {
     private void parseSettings() {
         ConfigurationSection settingsSection = config.getConfigurationSection("warning-settings");
 
-        maxWarningPoints = settingsSection.getInt("max-warnings-points-before-ban",10);
+        maxWarningPoints = settingsSection.getInt("max-minewarnings-points-before-ban",10);
         pardonTime = settingsSection.getInt("pardon-time",-1);
         hiddenModerator = settingsSection.getBoolean("hidden-moderator",false);
         consoleWarning = settingsSection.getBoolean("console-can-warn",true);
@@ -89,7 +88,7 @@ public class DefaultConfigReader {
         String warningsTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, user VARCHAR(255) NOT NULL, moderator VARCHAR(255) NOT NULL, start DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, points INTEGER NOT NULL, days INTEGER NOT NULL, description TEXT NOT NULL, justification TEXT);";
         String bansTableQuery = "CREATE TABLE IF NOT EXISTS $tableName(id INTEGER PRIMARY KEY AUTO_INCREMENT, start DATETIME NOT NULL, days INTEGER NOT NULL, stage INTEGER NOT NULL);";
 
-        warningsTableQuery = warningsTableQuery.replace("$tableName", prefix+"warnings");
+        warningsTableQuery = warningsTableQuery.replace("$tableName", prefix+"minewarnings");
         bansTableQuery = bansTableQuery.replace("$tableName",prefix+"bans");
 
         PreparedStatement wtStatement = database.prepareStatement(warningsTableQuery);
@@ -102,7 +101,7 @@ public class DefaultConfigReader {
     public void persist() {
         ConfigurationSection settingsSection = config.getConfigurationSection("warning-settings");
 
-        settingsSection.set("max-warnings-points-before-ban", 255);
+        settingsSection.set("max-minewarnings-points-before-ban", 255);
         settingsSection.set("ban-times",banStages);
         settingsSection.set("pardon-time",pardonTime);
         settingsSection.set("hidden-moderator",hiddenModerator);
@@ -121,7 +120,7 @@ public class DefaultConfigReader {
             cause.set("description",c.getDescription());
         }
 
-        Warnings.getPlugin().saveConfig();
+        MineWarnings.getPlugin().saveConfig();
 
     }
 

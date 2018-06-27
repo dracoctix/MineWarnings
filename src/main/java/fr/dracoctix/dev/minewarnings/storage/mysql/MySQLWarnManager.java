@@ -1,8 +1,8 @@
-package fr.dracoctix.dev.warnings.storage.mysql;
+package fr.dracoctix.dev.minewarnings.storage.mysql;
 
-import fr.dracoctix.dev.warnings.exceptions.UnknownWarningException;
-import fr.dracoctix.dev.warnings.storage.WarnManagerInterface;
-import fr.dracoctix.dev.warnings.warnings.Warning;
+import fr.dracoctix.dev.minewarnings.exceptions.UnknownWarningException;
+import fr.dracoctix.dev.minewarnings.storage.WarnManagerInterface;
+import fr.dracoctix.dev.minewarnings.warnings.Warning;
 import org.bukkit.entity.Player;
 
 import java.sql.Connection;
@@ -16,7 +16,7 @@ public class MySQLWarnManager implements WarnManagerInterface {
 
     public MySQLWarnManager(Connection connection, String prefix) {
         this.connection = connection;
-        this.table = prefix + "warnings";
+        this.table = prefix + "minewarnings";
     }
 
     @Override
