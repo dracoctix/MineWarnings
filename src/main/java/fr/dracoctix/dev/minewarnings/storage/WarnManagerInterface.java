@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 
 public interface WarnManagerInterface {
-    void addWarning(Warning warning);
+    boolean addWarning(Warning warning);
     void removeWarning(int id) throws UnknownWarningException;
     void editWarning(int id, Warning warning) throws UnknownWarningException;
 

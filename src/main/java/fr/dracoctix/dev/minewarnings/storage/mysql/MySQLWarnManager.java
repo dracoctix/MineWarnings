@@ -20,9 +20,11 @@ public class MySQLWarnManager implements WarnManagerInterface {
     }
 
     @Override
-    public void addWarning(Warning warning) {
+    public boolean addWarning(Warning warning) {
         String sql = "INSERT INTO $tableName(user, moderator, start, points, days, description, justification) VALUES(?,?,?,?,?,?,?);";
         sql = sql.replace("$tableName",table);
+
+        boolean retour;
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -36,9 +38,13 @@ public class MySQLWarnManager implements WarnManagerInterface {
             statement.setInt(5,warning.getDays());
             statement.setString(6,warning.getDescription());
             statement.setString(7,warning.getDescription());
+            retour = true;
         } catch (SQLException e) {
             e.printStackTrace();
+            retour = false;
         }
+
+        return retour;
     }
 
     @Override
