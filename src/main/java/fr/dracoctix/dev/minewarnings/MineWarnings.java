@@ -1,5 +1,6 @@
 package fr.dracoctix.dev.minewarnings;
 
+import fr.dracoctix.dev.minewarnings.commands.DefaultWarnCommandListener;
 import fr.dracoctix.dev.minewarnings.commands.WarnListCommandListener;
 import fr.dracoctix.dev.minewarnings.configuration.DefaultConfigReader;
 import fr.dracoctix.dev.minewarnings.storage.WarnManagerInterface;
@@ -56,6 +57,7 @@ public final class MineWarnings extends JavaPlugin {
     private void registerCommands()
     {
         getCommand("warn-causes").setExecutor(new WarnListCommandListener());
+        getCommand("warn").setExecutor(new DefaultWarnCommandListener(warnManager));
     }
 
     public WarnManagerInterface getWarnManager() {
