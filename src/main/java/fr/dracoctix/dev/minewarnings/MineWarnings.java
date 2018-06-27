@@ -24,10 +24,10 @@ public final class MineWarnings extends JavaPlugin {
 
         conf = new DefaultConfigReader(getConfig());
 
-        registerCommands();
-
         db = conf.getDatabase();
         warnManager = conf.getWarnManager();
+
+        registerCommands();
 
         getLogger().info("stop");
     }
