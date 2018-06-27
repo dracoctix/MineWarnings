@@ -1,0 +1,160 @@
+name: Warnings
+version: ${project.version}
+main: fr.dracoctix.dev.warnings.Warnings
+prefix: Warnings
+authors: [Dracoctix]
+description: Plugin which allows servers admins to use warnings on their servers.
+website: https://dev.dracoctix.fr
+
+commands:
+  warn:
+    description: Warn an user with a predefined cause. You can list the causes with warn-list command.
+    usage: "Usage : /warn <user> <cause> [moderator justification]"
+    permission: warn.cause
+    aliases:
+      - warning
+
+  warn-custom:
+    description: Warn an user with a custom cause.
+    usage: 'Usage : /warn-custom <user> "<cause description>" <points> <expiration-time-in-days> [moderator justification]'
+    permission: warn.custom
+    aliases:
+      - warning-custom
+      - custom-warn
+      - custom-warning
+
+  warn-causes:
+    description: List warn causes.
+    usage: 'Usage : /warn-causes'
+    permission: warn.causes-list
+    aliases:
+      - warning-causes
+      - causes-warning
+      - causes-warn
+
+  warn-info:
+    description: List users warning.
+    usage: 'Usage : /warn-info'
+    permission: warn.info
+    aliases:
+      - warning-info
+
+  warn-user-info:
+    description: List all warnings on an user.
+    usage: 'Usage : /warn-user-info <username>'
+    permission: warn.user-info
+    aliases:
+      - warning-user-info
+
+  warn-moderator-info:
+    description: List warnings given by a moderator.
+    usage: 'Usage : /warn-user-info <username>'
+    permission: warn.moderator-info
+    aliases:
+      - warning-moderator-info
+
+  warn-edit-cause:
+    description: Edit warning cause.
+    usage: 'Usage : /warn-edit-cause <id> <new-cause> [justification]'
+    permission: warn.edit-cause
+    aliases:
+      - warning-edit-cause
+
+  warn-edit:
+    description: Edit warning.
+    usage: 'Usage : /warn-edit <id> <points> [time] [description] [justification]'
+    permission: warn.edit
+    aliases:
+      - warning-edit
+
+  warn-cancel:
+    description: Cancel a warning.
+    usage: 'Usage : /warn-cancel <id>'
+    permission: warn.cancel
+    aliases:
+      - warning-cancel
+
+  warn-history:
+    description: Display the history of warnings.
+    usage: 'Usage : /warn-history [moderator]'
+    permission: warn.history
+    aliases:
+      - warning-history
+
+
+permissions:
+  warn.*:
+    description: Give access to every Warnings plugin commands.
+    children:
+      warn.moderator: true
+      warn.custom: true
+      warn.edit-all: true
+      warn.cancel-all: true
+      warn.edit-cause-all: true
+      warn.moderator-info-all: true
+      warn.history: true
+
+  warn.moderator:
+    description: Give standard moderator access to Warnings. The user with this permission can warn an user with a predefined cause, and list these causes.
+    children:
+      warn.user: true
+      warn.cause: true
+      warn.causes-list: true
+      warn.cancel: true
+      warn.edit-cause: true
+      warn.user-info: true
+
+  warn.user:
+    description: Standard user permission. The user can see his warnings.
+    children:
+      warn.info: true
+
+  warn.info:
+    description: An user with this permission can see his warnings.
+    default: true
+
+  warn.cause:
+    description: An user with this permission can warn with a predefined cause.
+    default: op
+
+  warn.causes-list:
+    description: An user with this permission can list predefined warning causes.
+    default: op
+
+  warn.custom:
+    description: An user with this permission can warn wis a custom cause.
+    default: op
+
+  warn.edit-all:
+    description: An user with this permission can edit all details from any warning.
+    default: op
+    children:
+      warn.edit: true
+
+  warn.edit:
+    description: An user with this permission can edit all details from warnings he gived.
+    default: op
+
+  warn.cancel-all:
+    description: An user with this permission can cancel any warning.
+    default: op
+    children:
+      warn.cancel: true
+
+  warn.cancel:
+    description: An user with this permission can cancel warning he gived.
+    default: op
+
+  warn.edit-cause-all:
+    description: An user with this permission can edit any warning, with a predefined cause.
+    default: op
+    children:
+      warn.edit-cause: true
+
+  warn.edit-cause:
+    description: An user with this permission can edit his warnings, with a predefined cause.
+    default: op
+
+  warn.history:
+    description: An user with this permission can display warnings history.
+    default: op

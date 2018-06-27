@@ -1,0 +1,28 @@
+warning-settings:
+  max-warnings-points-before-ban: 10 # Maximum warning points before player is banned
+  ban-times: # Ban time in days when user exceed the maximum warnings points. Every time the user is banned, the time is the following one. -1 for permabab.
+    - 15
+    - -1
+  pardon-time: -1 # Time, in days, after which player returns to first ban stage.
+  hidden-moderator: false # If true, the moderator will be invisible for user.
+  console-can-warn: true # If true, the console can give warnings
+  use-mysql: false # If true, the plugin will use mysql storage. By default, it uses yaml storage.
+
+default-warning-causes:
+  insults: # Cause name.
+    points: 2 # Points number per infraction.
+    expiration: 30 # Expiration time in days. -1 to have an infraction without expiration.
+    description: "Another player insult" # Description of infraction, displayed to user.
+
+  cheat:
+    points: 10
+    expiration : 365
+    description: "Cheating on server"
+
+mysql: # MySQL storage settings (required)
+  username: root # Your DB username
+  password: example # Your DB password
+  server: localhost # Your DB server
+  port: 3306 # Your DB port (default : 3306)
+  name: warnings # Your DB name
+  prefix: "warnings_" # Table name prefix
