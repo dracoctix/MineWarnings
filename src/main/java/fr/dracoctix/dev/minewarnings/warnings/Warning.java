@@ -2,12 +2,14 @@ package fr.dracoctix.dev.minewarnings.warnings;
 
 import org.bukkit.entity.Player;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Warning {
     private Player player;
     private Player moderator;
-    private Date start;
+    private Calendar start;
     private int days;
     private int points;
     private String description;
@@ -21,7 +23,7 @@ public class Warning {
         this.description = description;
         this.justification = justification;
 
-        start = new Date();
+        start = Calendar.getInstance();
     }
 
     public Warning(Player player, Player moderator, int days, int points, String description) {
@@ -31,8 +33,27 @@ public class Warning {
         this.points = points;
         this.description = description;
 
-        start = new Date();
+        start = Calendar.getInstance();
         justification = null;
+    }
+
+    public Calendar getEnd() {
+        Calendar end = (Calendar)start.clone();
+        end.set(Calendar.DAY_OF_MONTH,start.get(Calendar.DAY_OF_MONTH) + days);
+        return end;
+    }
+
+    public String startToString() {
+        return calendarToString(getStart());
+    }
+
+    public String endToString() {
+        return calendarToString(getEnd());
+    }
+
+    private static String calendarToString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+        return sdf.format(calendar.getTime());
     }
 
     public Player getPlayer() {
@@ -51,11 +72,11 @@ public class Warning {
         this.moderator = moderator;
     }
 
-    public Date getStart() {
+    public Calendar getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(Calendar start) {
         this.start = start;
     }
 

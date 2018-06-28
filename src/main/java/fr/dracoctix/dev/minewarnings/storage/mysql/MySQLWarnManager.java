@@ -34,7 +34,7 @@ public class MySQLWarnManager implements WarnManagerInterface {
 
             statement.setString(1,warning.getPlayer().getUniqueId().toString());
             statement.setString(2,moderatorUuid);
-            statement.setTimestamp(3,new Timestamp(warning.getStart().getTime()));
+            statement.setTimestamp(3,new Timestamp(warning.getStart().getTimeInMillis()));
             statement.setInt(4,warning.getPoints());
             statement.setInt(5,warning.getDays());
             statement.setString(6,warning.getDescription());

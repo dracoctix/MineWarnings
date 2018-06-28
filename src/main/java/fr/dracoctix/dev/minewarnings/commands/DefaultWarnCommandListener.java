@@ -43,13 +43,15 @@ public class DefaultWarnCommandListener extends AbstractUsageCommandListener {
             justification = null;
         }
 
-        Warning avertissement = new Warning(player,moderator,cause.getExpirationTime(),cause.getPoints(),cause.getDescription(), justification);
-        boolean reussite = warnManager.addWarning(avertissement);
+        Warning warning = new Warning(player,moderator,cause.getExpirationTime(),cause.getPoints(),cause.getDescription(), justification);
+        boolean success = warnManager.addWarning(warning);
 
-        if(!reussite) {
+        if(!success) {
             sender.sendMessage(ChatColor.RED + "The warning cannot be registered in storage system. Please retry, and contact system administrator if the problem persists.");
             return false;
         }
+
+        sender.sendMessage(ChatColor.GREEN + "The player " + player.getPlayerListName() + " was warned for reason " + cause.getId() + ".\nIt's a " + cause.getPoints() + " points warning. It will end in " + cause.getExpirationTime() + " days, the " + warning.endToString() + ".");
 
         return true;
     }
