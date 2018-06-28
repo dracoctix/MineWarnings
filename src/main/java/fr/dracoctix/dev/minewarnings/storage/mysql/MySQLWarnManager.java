@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.HashMap;
 
 public class MySQLWarnManager implements WarnManagerInterface {
@@ -33,7 +34,7 @@ public class MySQLWarnManager implements WarnManagerInterface {
 
             statement.setString(1,warning.getPlayer().getUniqueId().toString());
             statement.setString(2,moderatorUuid);
-            statement.setDate(3,warning.getStart());
+            statement.setTimestamp(3,new Timestamp(warning.getStart().getTime()));
             statement.setInt(4,warning.getPoints());
             statement.setInt(5,warning.getDays());
             statement.setString(6,warning.getDescription());

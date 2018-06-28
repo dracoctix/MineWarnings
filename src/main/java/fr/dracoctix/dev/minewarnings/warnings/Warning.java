@@ -2,8 +2,7 @@ package fr.dracoctix.dev.minewarnings.warnings;
 
 import org.bukkit.entity.Player;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Warning {
     private Player player;
@@ -22,7 +21,7 @@ public class Warning {
         this.description = description;
         this.justification = justification;
 
-        start = Date.valueOf(LocalDate.now());
+        start = new Date();
     }
 
     public Warning(Player player, Player moderator, int days, int points, String description) {
@@ -32,7 +31,7 @@ public class Warning {
         this.points = points;
         this.description = description;
 
-        start = Date.valueOf(LocalDate.now());
+        start = new Date();
         justification = null;
     }
 
